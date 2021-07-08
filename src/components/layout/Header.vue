@@ -17,6 +17,7 @@ export default {};
 
 <style scoped>
 header{
+  width: 100%;
   background-color: var(--gray-medium);
   padding: 10px var(--padding-default);
   display: flex;
@@ -32,6 +33,10 @@ div.logo{
 
 div.logo img{
   height: 30px;
+}
+
+div.logo span{
+  font-weight: 400;
 }
 
 div.info{

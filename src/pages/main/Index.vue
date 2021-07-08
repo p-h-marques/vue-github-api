@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <Main />
 </template>
 
 <!-- <h1>UserInfo</h1>
@@ -8,11 +9,13 @@
 
 <script>
 import Header from '@/components/layout/Header.vue';
+import Main from '@/components/index/Main.vue';
 
 export default {
-  name: 'Main',
+  name: 'Index',
   components: {
     Header,
+    Main,
   },
 };
 </script>
