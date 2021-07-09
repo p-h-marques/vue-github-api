@@ -29,6 +29,7 @@ div.pagination{
 div.pagination div.pages{
   border-right: var(--border-default);
   padding-right: 16px;
+  font-size: 14px;
   line-height: 20px;
 }
 

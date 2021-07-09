@@ -1,30 +1,28 @@
 <template>
-  <div class="lista">
+  <section class="lista">
     <Pagination />
 
-    <div class="repocard" v-for="n in 10" v-bind:key="n">
-      <div>
-        Card de repositório
-      </div>
-    </div>
+    <RepoCard v-for="n in 10" v-bind:key="n"/>
 
     <Pagination />
-  </div>
+  </section>
 </template>
 
 <script>
 import Pagination from '@/components/layout/Pagination.vue';
+import RepoCard from '@/components/index/RepoCard.vue';
 
 export default {
   name: 'ReposList',
   components: {
     Pagination,
+    RepoCard,
   },
 };
 </script>
 
 <style scoped>
-div.lista{
+section.lista{
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -34,7 +32,7 @@ div.lista{
 }
 
 @media(max-width: 991px){
-  div.lista{
+  section.lista{
     border-left: unset;
     border-top: var(--border-default);
     padding-top: 16px;

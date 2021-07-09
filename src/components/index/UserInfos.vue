@@ -1,5 +1,5 @@
 <template>
-  <div class="userinfos">
+  <section class="userinfos">
     <div class="imguser">
       <img src="https://avatars.githubusercontent.com/u/958072?v=4"
         alt="The Laravel Framework Logo">
@@ -12,7 +12,7 @@
         <span>57 repositórios</span>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -22,13 +22,13 @@ export default {
 </script>
 
 <style scoped>
-div.userinfos{
+section.userinfos{
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-div.userinfos div.imguser{
+section.userinfos div.imguser{
   width: 200px;
   height: 200px;
   background-color: var(--gray-medium);
@@ -37,7 +37,7 @@ div.userinfos div.imguser{
   align-items: center;
 }
 
-div.userinfos div.imguser img{
+section.userinfos div.imguser img{
   width: 150px;
   height: 150px;
 }
@@ -61,19 +61,19 @@ div.infouser div.repocount{
 }
 
 @media(max-width: 767px){
-  div.userinfos div.imguser{
+  section.userinfos div.imguser{
     width: 150px;
     height: 150px;
   }
 
-  div.userinfos div.imguser img{
+  section.userinfos div.imguser img{
     width: 100px;
     height: 100px;
   }
 }
 
 @media(max-width: 575px){
-    div.userinfos{
+    section.userinfos{
       flex-direction: column;
       align-items: flex-start;
     }
