@@ -29,6 +29,7 @@ const store = createStore({
           total: 1,
         },
       },
+      loading: true,
     };
   },
 
@@ -45,6 +46,9 @@ const store = createStore({
       return state.pagination;
     },
 
+    [getters.GET_LOADING](state) {
+      return state.loading;
+    },
   },
 
   mutations: {
@@ -83,10 +87,19 @@ const store = createStore({
     [mutations.SET_LAST_PAGE](state) {
       state.pagination.pages.current = state.pagination.pages.total;
     },
+
+    [mutations.SET_LOADING](state, data) {
+      state.loading = data.payload;
+    },
   },
 
   actions: {
     async [actions.SET_FIRST_PAGE](context) {
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: true,
+      });
+
       const page = 1;
       const infos = await getInfos(page);
 
@@ -104,9 +117,19 @@ const store = createStore({
         type: mutations.SET_PAGINATION,
         payload: infos.pagination,
       });
+
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: false,
+      });
     },
 
     async [actions.SET_PREV_PAGE](context) {
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: true,
+      });
+
       const page = context.state.pagination.pages.current - 1;
       const infos = await getInfos(page);
 
@@ -124,9 +147,19 @@ const store = createStore({
         type: mutations.SET_PAGINATION,
         payload: infos.pagination,
       });
+
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: false,
+      });
     },
 
     async [actions.SET_NEXT_PAGE](context) {
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: true,
+      });
+
       const page = context.state.pagination.pages.current + 1;
       const infos = await getInfos(page);
 
@@ -144,9 +177,19 @@ const store = createStore({
         type: mutations.SET_PAGINATION,
         payload: infos.pagination,
       });
+
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: false,
+      });
     },
 
     async [actions.SET_LAST_PAGE](context) {
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: true,
+      });
+
       const page = context.state.pagination.pages.total;
       const infos = await getInfos(page);
 
@@ -163,6 +206,11 @@ const store = createStore({
       context.commit({
         type: mutations.SET_PAGINATION,
         payload: infos.pagination,
+      });
+
+      context.commit({
+        type: mutations.SET_LOADING,
+        payload: false,
       });
     },
   },

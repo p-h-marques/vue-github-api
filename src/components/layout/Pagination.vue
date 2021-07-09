@@ -44,9 +44,6 @@ export default {
       actions.SET_LAST_PAGE,
     ]),
   },
-  watch: {
-    userPagination(pag) { console.log(pag); },
-  },
 };
 </script>
 

@@ -35,6 +35,11 @@ export default {
       type: mutations.SET_PAGINATION,
       payload: infos.pagination,
     });
+
+    this.$store.commit({
+      type: mutations.SET_LOADING,
+      payload: false,
+    });
   },
 };
 </script>

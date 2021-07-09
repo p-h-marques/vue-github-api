@@ -2,6 +2,7 @@
   <Header />
   <Main />
   <Footer />
+  <Loader />
 </template>
 
 <!-- <h1>UserInfo</h1>
@@ -12,6 +13,7 @@
 import Header from '@/components/layout/Header.vue';
 import Main from '@/components/index/Main.vue';
 import Footer from '@/components/layout/Footer.vue';
+import Loader from '@/components/layout/Loader.vue';
 
 export default {
   name: 'Index',
@@ -19,6 +21,7 @@ export default {
     Header,
     Main,
     Footer,
+    Loader,
   },
 };
 </script>
