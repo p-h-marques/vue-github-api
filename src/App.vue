@@ -16,19 +16,19 @@ export default {
 <style lang="scss">
 @font-face {
   font-family: "SegoeUI";
-  src: local("SegoeUI-Regular"), url(./assets/fonts/SegoeUi-Regular.ttf) format("truetype");
+  src: local("segoe-regular"), url(./assets/fonts/segoe-regular.ttf) format("truetype");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "SegoeUI";
-  src: local("SegoeUI-Semibold"), url(./assets/fonts/SegoeUi-Semibold.ttf) format("truetype");
+  src: local("segoe-semibold"), url(./assets/fonts/segoe-semibold.ttf) format("truetype");
   font-weight: 600;
 }
 
 @font-face {
   font-family: "SegoeUI";
-  src: local("SegoeUI-Bold"), url(./assets/fonts/SegoeUi-Bold.ttf) format("truetype");
+  src: local("segoe-bold"), url(./assets/fonts/segoe-bold.ttf) format("truetype");
   font-weight: 800;
 }
 
