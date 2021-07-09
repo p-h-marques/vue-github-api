@@ -1,7 +1,7 @@
 <template>
   <div class="pagination">
     <div class="pages">
-      Página 1 de 27
+      Página {{userPagination.pages.current}} de {{userPagination.pages.total}}
     </div>
     <div class="controls">
       <img src="../../assets/images/first.svg" alt="Primeira página">
@@ -23,7 +23,7 @@ export default {
     ]),
   },
   watch: {
-    userPagination(teste) { console.log(teste); },
+    userPagination(pagination) { console.log(pagination); },
   },
 };
 </script>

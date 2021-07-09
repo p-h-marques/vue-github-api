@@ -12,7 +12,18 @@ async function getUserInfo(user) {
   return response;
 }
 
-function handlePaginationData(header) {
+function getTotalPages(urls, page) {
+  if (urls.last !== undefined) {
+    const query = urls.last.split('?')[1];
+    const params = new URLSearchParams(query);
+
+    return parseInt(params.get('page'), 10);
+  }
+
+  return page;
+}
+
+function handlePaginationData(header, page) {
   const urlsA = header.split(',');
 
   const urlsB = urlsA.map((url) => url.trim().split(';'));
@@ -22,21 +33,29 @@ function handlePaginationData(header) {
     url[1].trim().replace(/"/g, '').replace('rel=', ''),
   ]));
 
-  const out = {};
+  const out = {
+    links: {},
+    pages: {},
+  };
 
   urlsC.forEach((url) => {
     const key = url[1];
     const value = url[0];
 
-    out[key] = value;
+    out.links[key] = value;
   });
+
+  out.pages = {
+    current: page,
+    total: getTotalPages(out.links, page),
+  };
 
   return out;
 }
 
-async function getUserRepos(user) {
-  const request = await fetch(`${userApi + user + reposFolder}?page=1&per_page=10`);
-  const pagination = handlePaginationData(request.headers.get('Link'));
+async function getUserRepos(user, page = 1) {
+  const request = await fetch(`${userApi + user + reposFolder}?page=${page}&per_page=10`);
+  const pagination = handlePaginationData(request.headers.get('Link'), page);
 
   if (request.status !== 200) return false;
 

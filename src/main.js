@@ -15,7 +15,18 @@ const store = createStore({
         public_repos: 0,
       },
       repos: [],
-      pagination: {},
+      pagination: {
+        links: {
+          first: null,
+          prev: null,
+          next: null,
+          last: null,
+        },
+        pages: {
+          current: 1,
+          total: 1,
+        },
+      },
     };
   },
 
@@ -39,7 +50,14 @@ const store = createStore({
       state.repos = [...data.payload];
     },
     [mutations.SET_PAGINATION](state, data) {
-      state.pagination = { ...data.payload };
+      state.pagination = {
+        links: {
+          ...state.pagination.links, ...data.payload.links,
+        },
+        pages: {
+          ...state.pagination.pages, ...data.payload.pages,
+        },
+      };
     },
   },
 });

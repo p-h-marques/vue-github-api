@@ -95,6 +95,7 @@ div.repoinfos div.details div.detail img{
 
 div.repoinfos div.details div.detail span{
   font-size: 12px;
+  line-height: 16px;
 }
 
 div.arrow{
