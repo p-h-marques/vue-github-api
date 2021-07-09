@@ -13,10 +13,6 @@
       </div>
     </div>
   </div>
-
-  <div class="reposlist">
-    list
-  </div>
 </template>
 
 <script>
@@ -30,8 +26,6 @@ div.userinfos{
   display: flex;
   align-items: center;
   gap: 20px;
-  border-right: var(--border-default);
-  padding-right: 16px;
 }
 
 div.userinfos div.imguser{
@@ -64,15 +58,6 @@ div.infouser div.repocount{
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-@media(max-width: 991px){
-  div.userinfos{
-    border-right: unset;
-    border-bottom: var(--border-default);
-    padding-right: unset;
-    padding-bottom: 16px;
-  }
 }
 
 @media(max-width: 767px){

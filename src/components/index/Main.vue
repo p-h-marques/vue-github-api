@@ -1,16 +1,19 @@
 <template>
   <main>
     <UserInfos />
+    <ReposList />
   </main>
 </template>
 
 <script>
 import UserInfos from '@/components/index/UserInfos.vue';
+import ReposList from '@/components/index/ReposList.vue';
 
 export default {
   name: 'Main',
   components: {
     UserInfos,
+    ReposList,
   },
 };
 </script>
@@ -23,6 +26,7 @@ main{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
+  align-items: flex-start;
 }
 
 @media(max-width: 991px){

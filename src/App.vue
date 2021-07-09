@@ -49,7 +49,7 @@ body {
 
   --shadow-default: 0px 2px 4px var(--gray-background);
   --padding-default: 40px;
-  --border-default: 1px solid var(--gray-medium);
+  --border-default: 2px solid var(--gray-medium);
 
   height: 100vh;
   padding: 0px;
