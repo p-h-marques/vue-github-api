@@ -25,7 +25,9 @@
     </div>
 
     <div class="arrow">
-      <img src="../../assets/images/arrow.svg" alt="Ir ao repositório">
+      <a :href="repo.svn_url" target="_blank">
+        <img src="../../assets/images/arrow.svg" alt="Ir ao repositório">
+      </a>
     </div>
   </div>
 </template>

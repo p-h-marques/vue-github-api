@@ -75,19 +75,6 @@ const store = createStore({
       };
     },
 
-    [mutations.SET_FIRST_PAGE](state) {
-      state.pagination.pages.current = 1;
-    },
-    [mutations.SET_PREV_PAGE](state) {
-      state.pagination.pages.current -= 1;
-    },
-    [mutations.SET_NEXT_PAGE](state) {
-      state.pagination.pages.current += 1;
-    },
-    [mutations.SET_LAST_PAGE](state) {
-      state.pagination.pages.current = state.pagination.pages.total;
-    },
-
     [mutations.SET_LOADING](state, data) {
       state.loading = data.payload;
     },

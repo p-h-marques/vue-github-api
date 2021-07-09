@@ -4,10 +4,6 @@
       <img src="../../assets/images/logo.svg" alt="Repos Alheios!">
       <span>Repos Alheios!</span>
     </div>
-
-    <div class="info">
-      <img src="../../assets/images/info.svg" alt="Infos">
-    </div>
   </header>
 </template>
 
@@ -37,15 +33,6 @@ div.logo img{
 
 div.logo span{
   font-weight: 400;
-}
-
-div.info{
-  display: flex;
-  align-items: center;
-}
-
-div.info img{
-  height: 20px;
 }
 
 </style>
