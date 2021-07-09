@@ -67,10 +67,10 @@ async function getUserRepos(user, page = 1) {
   };
 }
 
-export default async function getInfos() {
+export default async function getInfos(page) {
   const requests = await Promise.all([
     getUserInfo(userToFetch),
-    getUserRepos(userToFetch),
+    getUserRepos(userToFetch, page),
   ]);
 
   if (requests[0] && requests[1]) {

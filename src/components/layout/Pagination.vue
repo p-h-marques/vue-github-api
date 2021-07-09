@@ -4,17 +4,31 @@
       Página {{userPagination.pages.current}} de {{userPagination.pages.total}}
     </div>
     <div class="controls">
-      <img src="../../assets/images/first.svg" alt="Primeira página">
-      <img src="../../assets/images/prev.svg" alt="Página anterior">
-      <img src="../../assets/images/next.svg" alt="Próxima página">
-      <img src="../../assets/images/last.svg" alt="Última página">
+      <img src="../../assets/images/first.svg" alt="Primeira página"
+        v-if="userPagination.links.first !== null"
+        @click="setFirstPage">
+
+      <img src="../../assets/images/prev.svg" alt="Página anterior"
+        v-if="userPagination.links.prev !== null"
+        @click="setPrevPage">
+
+      <img src="../../assets/images/next.svg" alt="Próxima página"
+        v-if="userPagination.links.next !== null"
+        @click="setNextPage">
+
+      <img src="../../assets/images/last.svg" alt="Última página"
+        v-if="userPagination.links.last !== null"
+        @click="setLastPage">
+
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+
 import * as getters from '../../store/getters_types';
+import * as actions from '../../store/actions_types';
 
 export default {
   computed: {
@@ -22,8 +36,16 @@ export default {
       getters.GET_PAGINATION,
     ]),
   },
+  methods: {
+    ...mapActions([
+      actions.SET_FIRST_PAGE,
+      actions.SET_PREV_PAGE,
+      actions.SET_NEXT_PAGE,
+      actions.SET_LAST_PAGE,
+    ]),
+  },
   watch: {
-    userPagination(pagination) { console.log(pagination); },
+    userPagination(pag) { console.log(pag); },
   },
 };
 </script>

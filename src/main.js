@@ -1,6 +1,8 @@
 import { createApp } from 'vue';
 import { createStore } from 'vuex';
 
+import getInfos from '@/functions/get_infos';
+import * as actions from './store/actions_types';
 import * as mutations from './store/mutation_types';
 import * as getters from './store/getters_types';
 
@@ -34,30 +36,134 @@ const store = createStore({
     [getters.GET_USER](state) {
       return state.user;
     },
+
     [getters.GET_REPOS](state) {
       return state.repos;
     },
+
     [getters.GET_PAGINATION](state) {
       return state.pagination;
     },
+
   },
 
   mutations: {
     [mutations.SET_USER](state, data) {
       state.user = { ...data.payload };
     },
+
     [mutations.SET_REPOS](state, data) {
       state.repos = [...data.payload];
     },
+
     [mutations.SET_PAGINATION](state, data) {
       state.pagination = {
         links: {
-          ...state.pagination.links, ...data.payload.links,
+          first: null,
+          prev: null,
+          next: null,
+          last: null,
+          ...data.payload.links,
         },
         pages: {
           ...state.pagination.pages, ...data.payload.pages,
         },
       };
+    },
+
+    [mutations.SET_FIRST_PAGE](state) {
+      state.pagination.pages.current = 1;
+    },
+    [mutations.SET_PREV_PAGE](state) {
+      state.pagination.pages.current -= 1;
+    },
+    [mutations.SET_NEXT_PAGE](state) {
+      state.pagination.pages.current += 1;
+    },
+    [mutations.SET_LAST_PAGE](state) {
+      state.pagination.pages.current = state.pagination.pages.total;
+    },
+  },
+
+  actions: {
+    async [actions.SET_FIRST_PAGE](context) {
+      const page = 1;
+      const infos = await getInfos(page);
+
+      context.commit({
+        type: mutations.SET_USER,
+        payload: infos.user,
+      });
+
+      context.commit({
+        type: mutations.SET_REPOS,
+        payload: infos.repos,
+      });
+
+      context.commit({
+        type: mutations.SET_PAGINATION,
+        payload: infos.pagination,
+      });
+    },
+
+    async [actions.SET_PREV_PAGE](context) {
+      const page = context.state.pagination.pages.current - 1;
+      const infos = await getInfos(page);
+
+      context.commit({
+        type: mutations.SET_USER,
+        payload: infos.user,
+      });
+
+      context.commit({
+        type: mutations.SET_REPOS,
+        payload: infos.repos,
+      });
+
+      context.commit({
+        type: mutations.SET_PAGINATION,
+        payload: infos.pagination,
+      });
+    },
+
+    async [actions.SET_NEXT_PAGE](context) {
+      const page = context.state.pagination.pages.current + 1;
+      const infos = await getInfos(page);
+
+      context.commit({
+        type: mutations.SET_USER,
+        payload: infos.user,
+      });
+
+      context.commit({
+        type: mutations.SET_REPOS,
+        payload: infos.repos,
+      });
+
+      context.commit({
+        type: mutations.SET_PAGINATION,
+        payload: infos.pagination,
+      });
+    },
+
+    async [actions.SET_LAST_PAGE](context) {
+      const page = context.state.pagination.pages.total;
+      const infos = await getInfos(page);
+
+      context.commit({
+        type: mutations.SET_USER,
+        payload: infos.user,
+      });
+
+      context.commit({
+        type: mutations.SET_REPOS,
+        payload: infos.repos,
+      });
+
+      context.commit({
+        type: mutations.SET_PAGINATION,
+        payload: infos.pagination,
+      });
     },
   },
 });
