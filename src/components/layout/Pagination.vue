@@ -13,8 +13,18 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex';
+import * as getters from '../../store/getters_types';
 
+export default {
+  computed: {
+    ...mapGetters([
+      getters.GET_PAGINATION,
+    ]),
+  },
+  watch: {
+    userPagination(teste) { console.log(teste); },
+  },
 };
 </script>
 

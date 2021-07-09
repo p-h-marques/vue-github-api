@@ -2,7 +2,7 @@
   <section class="lista">
     <Pagination />
 
-    <RepoCard v-for="n in 10" v-bind:key="n"/>
+    <RepoCard v-for="repo in userRepos" v-bind:key="repo.id" v-bind:repo="repo"/>
 
     <Pagination />
   </section>
@@ -12,11 +12,19 @@
 import Pagination from '@/components/layout/Pagination.vue';
 import RepoCard from '@/components/index/RepoCard.vue';
 
+import { mapGetters } from 'vuex';
+import * as getters from '../../store/getters_types';
+
 export default {
   name: 'ReposList',
   components: {
     Pagination,
     RepoCard,
+  },
+  computed: {
+    ...mapGetters([
+      getters.GET_REPOS,
+    ]),
   },
 };
 </script>

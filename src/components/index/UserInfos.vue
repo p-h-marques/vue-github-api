@@ -1,23 +1,30 @@
 <template>
   <section class="userinfos">
     <div class="imguser">
-      <img src="https://avatars.githubusercontent.com/u/958072?v=4"
-        alt="The Laravel Framework Logo">
+      <img :src=userInfos.avatar_url
+        alt="Carregando...">
 
     </div>
     <div class="infouser">
-      <h2>The Laravel Framework</h2>
+      <h2>{{userInfos.name}}</h2>
       <div class="repocount">
         <img src="../../assets/images/repos.svg" alt="Repositórios">
-        <span>57 repositórios</span>
+        <span>{{userInfos.public_repos}} repositórios</span>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex';
+import * as getters from '../../store/getters_types';
 
+export default {
+  computed: {
+    ...mapGetters([
+      getters.GET_USER,
+    ]),
+  },
 };
 </script>
 

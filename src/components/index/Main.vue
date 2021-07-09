@@ -35,8 +35,6 @@ export default {
       type: mutations.SET_PAGINATION,
       payload: infos.pagination,
     });
-
-    console.log(this.$store.state);
   },
 };
 </script>
@@ -50,6 +48,7 @@ main{
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
   align-items: flex-start;
+  flex-grow: 1;
 }
 
 @media(max-width: 991px){

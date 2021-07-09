@@ -35,7 +35,7 @@ function handlePaginationData(header) {
 }
 
 async function getUserRepos(user) {
-  const request = await fetch(`${userApi + user + reposFolder}`);
+  const request = await fetch(`${userApi + user + reposFolder}?page=1&per_page=10`);
   const pagination = handlePaginationData(request.headers.get('Link'));
 
   if (request.status !== 200) return false;
@@ -53,8 +53,6 @@ export default async function getInfos() {
     getUserInfo(userToFetch),
     getUserRepos(userToFetch),
   ]);
-
-  console.log(requests);
 
   if (requests[0] && requests[1]) {
     return {

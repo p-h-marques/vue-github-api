@@ -2,24 +2,24 @@
   <div class="repocard">
     <div class="repoinfos">
       <div class="title">
-        <h3>laravel</h3>
-        <p>A PHP framework for web artisans.</p>
+        <h3>{{repo.name}}</h3>
+        <p>{{repo.description}}</p>
       </div>
 
       <div class="details">
         <div class="detail">
           <img src="../../assets/images/updated.svg" alt="Atualizado pela última vez:">
-          <span>Atualizado 21h57 do dia 21/03/2019</span>
+          <span>{{updatedAt}}</span>
         </div>
 
         <div class="detail">
           <img src="../../assets/images/fork.svg" alt="Forks:">
-          <span>127 forks</span>
+          <span>{{repo.forks_count}} forks</span>
         </div>
 
         <div class="detail">
           <img src="../../assets/images/watcher.svg" alt="Watchers:">
-          <span>523 watchers</span>
+          <span>{{repo.watchers_count}} watchers</span>
         </div>
       </div>
     </div>
@@ -31,8 +31,15 @@
 </template>
 
 <script>
-export default {
+import formatUpdatedAt from '@/functions/utils';
 
+export default {
+  props: ['repo'],
+  data() {
+    return {
+      updatedAt: formatUpdatedAt(this.repo.updated_at),
+    };
+  },
 };
 </script>
 
@@ -46,7 +53,8 @@ div.repocard{
 
 div.repoinfos{
   flex-grow: 1;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   margin-right: 16px;
   gap: 20px;
@@ -56,7 +64,6 @@ div.repoinfos div.title{
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex-grow: 1;
 }
 
 div.repoinfos div.title h3{
@@ -71,9 +78,8 @@ div.repoinfos div.title p{
 }
 
 div.repoinfos div.details{
-  flex-grow: 1;
-  display: flex;
   flex-direction: column;
+  display: flex;
   gap: 12px;
 }
 
@@ -102,8 +108,9 @@ div.arrow img{
 
 @media(max-width: 575px){
   div.repoinfos{
-    flex-direction: column;
     align-items: flex-start;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr)
   }
 }
 </style>
